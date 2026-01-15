@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | First Aid Finance</title>
+    <meta name="description" content="Get in touch with the experts at First Aid Finance. Specialized financial solutions for allied health professionals.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --mustard: #FFC800;
+            --mustard-dark: #E6B400;
+            --black: #050505;
+            --charcoal: #1A1A1A;
+            --white: #FFFFFF;
+            --gray-light: #F3F4F6;
+            --gray-medium: #9CA3AF;
+            --nav-height: 80px;
+            --container: 1280px;
+            --radius: 4px;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Reusing Core Typography & Layout */
+        h1, h2, h3, h4 { color: var(--black); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+        p { color: #4b5563; }
+        .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+        .section-padding { padding: 100px 0; }
+        .bg-light { background: var(--gray-light); }
+        .label {
+            display: inline-block; background: var(--gray-light); padding: 6px 12px;
+            border-radius: 4px; font-size: 0.8rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;
+            border-left: 3px solid var(--mustard);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height);
+            z-index: 1000; display: flex; align-items: center; background: white;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-size: 1.25rem; font-weight: 800; color: var(--black); text-transform: uppercase; text-decoration: none; }
+        .logo span { color: var(--mustard-dark); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { color: var(--black); font-weight: 500; font-size: 0.9rem; text-decoration: none; }
+        
+        .btn {
+            padding: 14px 28px; background: var(--black); color: var(--white);
+            font-weight: 600; font-size: 0.9rem; border-radius: var(--radius);
+            border: 1px solid var(--black); cursor: pointer; display: inline-flex;
+            align-items: center; gap: 8px; text-decoration: none; transition: 0.3s;
+        }
+        .btn:hover { background: var(--mustard); color: var(--black); border-color: var(--mustard); }
+        .btn-mustard { background: var(--mustard); color: var(--black); border: 1px solid var(--mustard); }
+
+        /* for get in touch button */
+        .btn.active {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        .btn.active:hover {
+            background: var(--mustard);
+            color: var(--black);
+            border-color: var(--mustard);
+        }
+
+
+        /* --- CONTACT FORM SECTION --- */
+        .contact-header { padding-top: 150px; padding-bottom: 60px; text-align: center; }
+        .contact-header h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 10px; }
+        
+        .contact-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        .form-input {
+            width: 100%; padding: 16px; background: var(--gray-light); border: 1px solid #ddd;
+            font-family: inherit; font-size: 1rem; border-radius: 4px;
+        }
+        .form-input:focus { outline: none; border-color: var(--mustard); background: var(--white); }
+
+        /* Underline animation */
+        .nav-links a {
+            position: relative; /* <-- add this */
+        }
+
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background: var(--mustard);
+            transition: width 0.3s var(--ease);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* --- MAP SECTION --- */
+        .map-container { width: 100%; height: 450px; filter: grayscale(100%); transition: 0.3s; margin-top: 80px; }
+        .map-container:hover { filter: grayscale(0%); }
+
+        /* --- FOUNDERS & ABOUT --- */
+        .founder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
+        .founder-card { display: flex; gap: 24px; align-items: center; background: white; padding: 30px; border: 1px solid #eee; }
+        .founder-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; background: #eee; filter: grayscale(100%); }
+
+        /* --- GOOGLE REVIEWS --- */
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .review-card { background: white; padding: 30px; border-radius: var(--radius); border-bottom: 4px solid var(--mustard); }
+        .stars { color: var(--mustard); margin-bottom: 10px; }
+
+        /* --- FAQ SECTION --- */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid #ddd; padding: 20px 0; cursor: pointer; }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 1.1rem; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; color: #666; margin-top: 10px; }
+        .faq-item.active .faq-answer { max-height: 200px; }
+        .faq-item.active i { transform: rotate(180deg); }
+
+        /* --- FOOTER (Same as Home) --- */
+        footer { background: var(--black); color: #888; padding: 80px 0 20px; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .footer-col h4 { color: var(--white); margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: #888; text-decoration: none; }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s var(--ease); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 968px) {
+            .contact-split, .founder-grid, .footer-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-plus-square" style="color: var(--mustard);"></i> 
+                First Aid <span>Finance</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../services/service-private-practice.html">Services</a>
+                <a href="#">Case Studies</a>
+                <a href="#">Tools</a>
+                <a href="../about/aboutus.html">About</a>
+            </div>
+            <a href="#" class="btn active">Get in Touch</a>
+        </div>
+    </nav>
+
+    <header class="contact-header">
+        <div class="container reveal">
+            <span class="label">Contact Us</span>
+            <h1>How can we help?</h1>
+            <p>Our team is ready to assist with your specialized finance needs.</p>
+        </div>
+    </header>
+
+    <section id="contact" class="container reveal">
+        <div class="contact-split">
+            <div>
+                <h2>Let's talk about your future.</h2>
+                <p style="margin-bottom: 40px;">Whether you're curious about LMI waivers or need practice finance, we speak your language.</p>
+                
+                <div style="margin-bottom: 30px;">
+                    <h4 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-location-dot" style="color:var(--mustard)"></i> Visit Us</h4>
+                    <p>Level 1, Suite A/207-209 Warrigal Rd, Hughesdale VIC 3166</p>
+                </div>
+                <div style="margin-bottom: 30px;">
+                    <h4 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-phone" style="color:var(--mustard)"></i> Call Us</h4>
+                    <p>(03) 9114 8963</p>
+                </div>
+                <div style="margin-bottom: 30px;">
+                    <h4 style="display:flex; align-items:center; gap:10px;"><i class="fa-solid fa-envelope" style="color:var(--mustard)"></i> Email</h4>
+                    <p>info@firstaidfinance.com.au</p>
+                </div>
+            </div>
+            
+            <form style="background: white; padding: 40px; border: 1px solid #eee; border-radius: var(--radius); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" placeholder="Dr. Jane Smith">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Profession</label>
+                    <input type="text" class="form-input" placeholder="e.g. Registered Nurse, Chiropractor">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" placeholder="jane.smith@clinic.com.au">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">How can we help?</label>
+                    <textarea class="form-input" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-mustard" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="map-container reveal">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.5443213123!2d145.0744!3d-37.9012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad66bc599999999%3A0x0!2zMzc_NTQnMDUuMyJTIDE0NfKwMDQnMDI3LjQiRQ!5e0!3m2!1sen!2sau!4v1620000000000!5m2!1sen!2sau" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <section class="section-padding bg-light">
+        <div class="container reveal">
+            <span class="label">Meet the Team</span>
+            <h2>Expertise you can trust.</h2>
+            <p style="max-width: 700px;">First Aid Finance was founded to bridge the gap between complex banking policies and the unique financial lives of healthcare professionals.</p>
+            
+            <div class="founder-grid">
+                <div class="founder-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80" alt="Aarash Salimi" class="founder-img">
+                    <div>
+                        <h3>Aarash Salimi</h3>
+                        <p style="color: var(--mustard-dark); font-weight: 700; font-size: 0.8rem;">FOUNDER & PRINCIPAL</p>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Specializing in complex lending structures for medical practice owners.</p>
+                    </div>
+                </div>
+                <div class="founder-card">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80" alt="Richard Su" class="founder-img">
+                    <div>
+                        <h3>Richard Su</h3>
+                        <p style="color: var(--mustard-dark); font-weight: 700; font-size: 0.8rem;">MORTGAGE SPECIALIST</p>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Expert in LMI waivers and low-deposit options for allied health staff.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container reveal">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px;">
+                <div>
+                    <span class="label">Testimonials</span>
+                    <h2>Rated 5/5 on Google</h2>
+                </div>
+                <a href="#" class="btn" style="background: transparent; color: black;">View All Reviews →</a>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Aarash made the process of buying my first home as a nurse so simple. He knew exactly which banks would accept my overtime."</p>
+                    <h4 style="margin-top: 20px; font-size: 0.9rem;">— Sarah T., Registered Nurse</h4>
+                </div>
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"The team at First Aid Finance helped me secure funding for my chiropractic clinic when others said it was too risky."</p>
+                    <h4 style="margin-top: 20px; font-size: 0.9rem;">— Dr. Michael L., Chiropractor</h4>
+                </div>
+                <div class="review-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Professional, knowledgeable, and always available. They truly understand the health industry's needs."</p>
+                    <h4 style="margin-top: 20px; font-size: 0.9rem;">— James P., Psychologist</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light">
+        <div class="container reveal">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <span class="label">FAQ</span>
+                <h2>Common Questions</h2>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">Do you charge for consultations? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">No, our initial consultations are completely free of charge. We are typically paid by the lenders, meaning you get expert advice at no cost to you.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is an LMI waiver? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">Lenders Mortgage Insurance (LMI) is usually required if you have less than a 20% deposit. However, many allied health professionals qualify for waivers, allowing you to buy with as little as 5-10% deposit without the extra cost.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can you help if I'm a locum or contractor? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">Absolutely. We specialize in irregular income patterns, including locum work, casual shift loading, and private contracting.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Which professional bodies do you work with? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">We work with AHPRA registered professionals including Nurses, Psychologists, Physiotherapists, Chiropractors, and more.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 style="color: var(--mustard);">FIRST AID FINANCE</h4>
+                    <p>Tailored advice for medical professionals. We deal with the banks so you can focus on your patients.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Advisors</h4>
+                    <ul>
+                        <li>Aarash Salimi</li>
+                        <li>Richard Su</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <div style="display: flex; gap: 15px; font-size: 1.2rem;">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #333; padding-top: 20px; font-size: 0.8rem; color: #666;">
+                <p>© 2026 First Aid Finance. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal Animations
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
